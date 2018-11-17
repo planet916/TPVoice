@@ -15,7 +15,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class ListViewAdapter_Select extends BaseAdapter {
-
+    static public SelectText st1 = new SelectText();
     private ArrayList<ListVO> listVO = new ArrayList<ListVO>() ;
     public ListViewAdapter_Select() {
     }
@@ -61,7 +61,21 @@ public class ListViewAdapter_Select extends BaseAdapter {
                     ((Activity)context).finish();
                     context.startActivity(intent);
                 }
-                Toast.makeText(context, (pos+1)+"번째 리스트가 클릭되었습니다.", Toast.LENGTH_SHORT).show();
+                if( pos == 1){
+                    Intent intent = new Intent(context, ShotGrid.class);
+                    ((Activity)context).finish();
+                    context.startActivity(intent);
+                }
+                if(pos == 2){
+                    Intent intent = new Intent(context, HotIceGrid.class);
+                    ((Activity)context).finish();
+                    context.startActivity(intent);
+                }
+                if (pos == 3) {
+                    Intent intent = new Intent(context, TakeoutGrid.class);
+                    ((Activity)context).finish();
+                    context.startActivity(intent);
+                }
             }
         });
 
