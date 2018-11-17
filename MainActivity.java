@@ -1,6 +1,7 @@
 package com.tpvoice;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.os.Bundle;
 import android.widget.ListView;
@@ -19,6 +20,8 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Intent intent = new Intent(this, Loading.class);
+        startActivity(intent);
         //변수 초기화
         adapter = new ListViewAdapter();
         listview = (ListView) findViewById(R.id.List_view);
