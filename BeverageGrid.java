@@ -8,34 +8,36 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.tpvoice.R;
-
-import org.w3c.dom.Text;
-
 
 public class BeverageGrid extends Activity {
-    static public SelectText st1 = new SelectText();
+    public static final String TAG = "Test_Alert_Dialog";
+//    static public SelectText st1 = new SelectText();
     Activity act = this;
     GridView gridView;
 //이미지 배열 선언
     ArrayList<Bitmap> picArr = new ArrayList<Bitmap>();
 //텍스트 배열 선언
     ArrayList<String> textArr = new ArrayList<String>();
+    ArrayList<Button> btnArr = new ArrayList<Button>();
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.grid);
+        setContentView(R.layout.beveragegridview);
         int[] img = {R.drawable.item1,R.drawable.item2,R.drawable.item3,R.drawable.item4,R.drawable.item5,R.drawable.item6};
+        Button btn [] = new Button[img.length];
+        Integer [] numbtn = {};
         for(int i=0; i<img.length; i++){
             Bitmap bm = BitmapFactory.decodeResource(getResources(), img[i]);
             picArr.add(bm);
@@ -77,6 +79,7 @@ public class BeverageGrid extends Activity {
             }
             ImageView imageView = (ImageView) convertView.findViewById(R.id.imageView1);
             TextView textView = (TextView) convertView.findViewById(R.id.textView1);
+            Button btn = (Button)convertView.findViewById(R.id.infobtn);
             imageView.setImageBitmap(picArr.get(position));
             textView.setText(textArr.get(position));
             imageView.setOnClickListener(new OnClickListener() {
@@ -84,9 +87,9 @@ public class BeverageGrid extends Activity {
                 public void onClick(View v) {
                     for(int i=0; i<Data.beverage_arr.length; i++) {
                         if (pos == i) {
-                            st1.setBeverage(Data.beverage_arr[i]);
+                            ListViewAdapter_Select.st1.setBeverage(Data.beverage_arr[i]);
 
-                            Toast.makeText(context, st1.getBeverage() + "가 클릭되었습니다.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, ListViewAdapter_Select.st1.getBeverage() + "가 클릭되었습니다.", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(context, Select.class);
                             finish();
                             context.startActivity(intent);
@@ -94,9 +97,15 @@ public class BeverageGrid extends Activity {
                     }
                 }
             });
+            btn.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(context, pos+1+"버튼 선택", Toast.LENGTH_SHORT).show();
+
+                }
+            });
             return convertView;
         }
     }
 }
-
 
