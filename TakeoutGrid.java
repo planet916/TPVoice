@@ -81,8 +81,6 @@ public class TakeoutGrid extends Activity {
                     for(int i=0; i<Data.takeout_arr.length; i++) {
                         if (pos == i) {
                             ListViewAdapter_Select.st1.setTakeout(Data.takeout_arr[i]);
-
-                            Toast.makeText(context, ListViewAdapter_Select.st1.getTakeout() + "가 클릭되었습니다.", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(context, Select.class);
                             finish();
                             context.startActivity(intent);
@@ -94,5 +92,3 @@ public class TakeoutGrid extends Activity {
         }
     }
 }
-
-
