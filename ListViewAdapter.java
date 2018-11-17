@@ -61,9 +61,7 @@ public class ListViewAdapter extends BaseAdapter {
                 if(pos == 0){
                     Intent intent = new Intent(context,Select.class);
                     context.startActivity(intent);
-
                 }
-                Toast.makeText(context, (pos+1)+"번째 리스트가 클릭되었습니다.", Toast.LENGTH_SHORT).show();
         }
         });
 
