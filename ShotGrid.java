@@ -18,13 +18,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.tpvoice.R;
-
-import org.w3c.dom.Text;
-
 
 public class ShotGrid extends Activity {
-    static public SelectText st1 = new SelectText();
     Activity act = this;
     GridView gridView;
     //이미지 배열 선언
@@ -34,15 +29,16 @@ public class ShotGrid extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.grid);
-        int[] img = {R.drawable.item1,R.drawable.item2,R.drawable.item3,R.drawable.item4,R.drawable.item5,R.drawable.item6};
+        setContentView(R.layout.shotgridview);
+        int[] img = {R.drawable.noshot,R.drawable.oneshot,R.drawable.twoshot,R.drawable.threeshot};
+
         for(int i=0; i<img.length; i++){
             Bitmap bm = BitmapFactory.decodeResource(getResources(), img[i]);
             picArr.add(bm);
         }
 
         for (int i = 0 ; i < img.length ; i++) {
-            textArr.add(Data.beverage_arr[i]);
+            textArr.add(Data.shot_arr[i]);
         }
         gridView = (GridView) findViewById(R.id.gridView1);
         gridView.setAdapter(new gridAdapter());
@@ -84,9 +80,9 @@ public class ShotGrid extends Activity {
                 public void onClick(View v) {
                     for(int i=0; i<Data.beverage_arr.length; i++) {
                         if (pos == i) {
-                            st1.setBeverage(Data.beverage_arr[i]);
+                            ListViewAdapter_Select.st1.setShot(Data.shot_arr[i]);
 
-                            Toast.makeText(context, st1.getBeverage() + "가 클릭되었습니다.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, ListViewAdapter_Select.st1.getShot() + "가 클릭되었습니다.", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(context, Select.class);
                             finish();
                             context.startActivity(intent);
