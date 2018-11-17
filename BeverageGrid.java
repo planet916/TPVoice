@@ -35,7 +35,7 @@ public class BeverageGrid extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.beveragegridview);
-        int[] img = {R.drawable.item1,R.drawable.item2,R.drawable.item3,R.drawable.item4,R.drawable.item5,R.drawable.item6};
+        int[] img = {R.drawable.coffee1,R.drawable.coffee2,R.drawable.coffee3,R.drawable.coffee4,R.drawable.coffee5,R.drawable.coffee6,R.drawable.coffee7};
         Button btn [] = new Button[img.length];
         Integer [] numbtn = {};
         for(int i=0; i<img.length; i++){
@@ -88,8 +88,6 @@ public class BeverageGrid extends Activity {
                     for(int i=0; i<Data.beverage_arr.length; i++) {
                         if (pos == i) {
                             ListViewAdapter_Select.st1.setBeverage(Data.beverage_arr[i]);
-
-                            Toast.makeText(context, ListViewAdapter_Select.st1.getBeverage() + "가 클릭되었습니다.", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(context, Select.class);
                             finish();
                             context.startActivity(intent);
@@ -97,15 +95,9 @@ public class BeverageGrid extends Activity {
                     }
                 }
             });
-            btn.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(context, pos+1+"버튼 선택", Toast.LENGTH_SHORT).show();
-
-                }
-            });
             return convertView;
         }
     }
 }
+
 
